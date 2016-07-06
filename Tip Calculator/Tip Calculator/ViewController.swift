@@ -16,9 +16,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tipPercentLabel: UILabel!
     
+    var mealCost: Float = 0.0
+    var tipPercent: Float = 20.0
+    
+    func finalCost() -> Float{
+        return mealCost + tipPercent / 100.0 * mealCost
+    }
     
     @IBAction func tipSliderChanged(sender: UISlider) {
-        self.costTextField.text = "\(sender.value)"
+        self.tipPercent = sender.value
+        self.tipPercentLabel.text = "\(self.tipPercent)"
     }
     
     @IBAction func costTextFieldChanged(sender: UITextField) {

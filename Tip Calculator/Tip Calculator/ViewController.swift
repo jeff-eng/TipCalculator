@@ -24,19 +24,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tipSliderChanged(sender: UISlider) {
-        self.tipPercent = sender.value
-        self.tipPercentLabel.text = "\(self.tipPercent)"
+        self.tipPercent = round(sender.value)
+        self.tipPercentLabel.text = "\(Int(self.tipPercent))"
+        
+        self.finalCostLabel.text = "\(finalCost())"
     }
     
     @IBAction func costTextFieldChanged(sender: UITextField) {
+        self.mealCost = Float(sender.text!)!
         
+        self.finalCostLabel.text = "\(finalCost())"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        self.costTextField.text = "Yay! We're finally writing code!"
     }
 
     override func didReceiveMemoryWarning() {

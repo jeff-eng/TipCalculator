@@ -23,10 +23,7 @@ class ViewController: UIViewController {
         return mealCost! + tipPercent / 100.0 * mealCost!
     }
     
-    @IBAction func tipSliderChanged(sender: UISlider) {
-        self.tipPercent = round(sender.value)
-        self.tipPercentLabel.text = "\(Int(self.tipPercent))"
-        
+    func updateFinalCostLabel() {
         if mealCost != nil {
             self.finalCostLabel.text = "\(finalCost())"
         } else {
@@ -34,14 +31,17 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func tipSliderChanged(sender: UISlider) {
+        self.tipPercent = round(sender.value)
+        self.tipPercentLabel.text = "\(Int(self.tipPercent))"
+        
+        updateFinalCostLabel()
+    }
+    
     @IBAction func costTextFieldChanged(sender: UITextField) {
         self.mealCost = Float(sender.text!)!
         
-        if mealCost != nil {
-            self.finalCostLabel.text = "\(finalCost())"
-        } else {
-            self.finalCostLabel.text = ""
-        }
+        updateFinalCostLabel()
     }
     
     override func viewDidLoad() {

@@ -26,8 +26,10 @@ class ViewController: UIViewController {
     func updateFinalCostLabel() {
         if mealCost != nil {
             self.finalCostLabel.text = "\(finalCost())"
-        } else {
+        } else if (self.costTextField.text!.isEmpty) {
             self.finalCostLabel.text = ""
+        } else {
+            self.finalCostLabel.text = "Invalid Cost!"
         }
     }
     
@@ -39,7 +41,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func costTextFieldChanged(sender: UITextField) {
-        self.mealCost = Float(sender.text!)!
+        self.mealCost = Float(sender.text!)
         
         updateFinalCostLabel()
     }
